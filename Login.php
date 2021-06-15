@@ -6,20 +6,16 @@
 if(isset($_POST["Submit"])){
     $Email=mysqli_real_escape_string($Connection, $_POST["Email"]);
     $Password=mysqli_real_escape_string($Connection, $_POST["Password"]);
-    if(ConfirmAccountActiveStatus()){
+    
         $Found_Account=Login_Attempt($Email,$Password);
         if($Found_Account){
             header('location: Welcome.php');
         }
         else{
-            $_SESSION["message"]="Invalid Email or Password.";
-            header("location: Login.php");
-       }
-    }
-    else{
-        $_SESSION["message"]="Account Confirmation Required!";
-        header("location: Login.php");
-    }
+            $_SESSION["message"]="Invalid Email or Password";
+        }
+        
+    
 }
 ?>
 
